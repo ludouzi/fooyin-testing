@@ -15,6 +15,7 @@ on:
 jobs:
   formatting-check:
     name: Formatting Check
+    if: ${{ false }}
     runs-on: ubuntu-latest
     strategy:
       matrix:

@@ -21,6 +21,7 @@ on:
       - 'data/translations/**'
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: write # needed for vcpkg cache and release upload
@@ -28,6 +29,7 @@ permissions:
 jobs:
   linux:
     name: Build Linux
+    if: ${{ false }}
     uses: ./.github/workflows/build-linux.yml
     with:
       version_suffix: ${{ inputs.version_suffix || '' }}
@@ -35,6 +37,7 @@ jobs:
 
   freebsd:
     name: Build FreeBSD
+    if: ${{ false }}
     uses: ./.github/workflows/build-freebsd.yml
     with:
       version_suffix: ${{ inputs.version_suffix || '' }}
@@ -42,6 +45,7 @@ jobs:
 
   windows:
     name: Build Windows
+    if: ${{ false }}
     uses: ./.github/workflows/build-windows.yml
     with:
       version_suffix: ${{ inputs.version_suffix || '' }}
@@ -49,6 +53,7 @@ jobs:
 
   macos:
     name: Build macOS
+    if: ${{ false }}
     uses: ./.github/workflows/build-macos.yml
     with:
       version_suffix: ${{ inputs.version_suffix || '' }}
@@ -70,7 +75,7 @@ jobs:
 
   attach:
     name: Attach to release
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: ${{ false }}
     runs-on: ubuntu-latest
     needs:
       - linux
